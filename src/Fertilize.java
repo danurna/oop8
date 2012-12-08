@@ -9,8 +9,8 @@ public class Fertilize extends UsageType{
         super();
     }
 
-    //VB: value != null
-    public Fertilize(Integer value){
+    //VB: value != null, value >= 0
+    public Fertilize(Double value){
         super(value);
     }
 

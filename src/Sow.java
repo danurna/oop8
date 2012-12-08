@@ -9,7 +9,7 @@ public class Sow extends UsageType{
         super();
     }
 
-    //VB: value != null
+    //VB: value != null, value >= 0
     public Sow(Integer value){
         super(value);
     }
