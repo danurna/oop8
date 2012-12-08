@@ -1,6 +1,7 @@
 import java.lang.reflect.Method;
 
 
+@Author("Bernhard")
 public class Test {
 
     /**
@@ -8,6 +9,7 @@ public class Test {
      * den Klassen umgeht:
      */
     
+    @Author("Florian")
     public static void printAuthors(Class<?> cls) {
         Author clsAuthor = cls.getAnnotation(Author.class);
         if (clsAuthor != null) {
@@ -24,8 +26,16 @@ public class Test {
         }
     }
     public static void main(String[] args) {
+        printAuthors(Author.class);
+        printAuthors(BiogasTractor.class);
+        printAuthors(Farm.class);
+        printAuthors(Fertilize.class);
+        printAuthors(FuelTractor.class);
         printAuthors(Map.class);
-
+        printAuthors(Sow.class);
+        printAuthors(Test.class);
+        printAuthors(Tractor.class);
+        printAuthors(UsageType.class);
 
     }
 }
