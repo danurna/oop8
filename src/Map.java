@@ -1,11 +1,29 @@
+import java.util.Iterator;
+
 // Eine Map speichert Values, die mit Keys assoziiert werden. 
 @Author("Florian")
-public class Map<K, V> {
-    Node head = null;
+public class Map<K, V> implements Iterable<V> {
+    private Node head = null;
     private class Node {
         private K key;
         private V value;
         private Node next;
+    }
+    
+    private class Iter implements Iterator<V> {
+        private Node next = head;
+        public boolean hasNext() {
+            return next != null;
+        }
+        public V next() {
+            V v = next.value;
+            next = next.next;
+            return v;
+        }
+        
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
     
     // NB: Gib value zurueck, der mit k assoziiert ist.
@@ -59,6 +77,11 @@ public class Map<K, V> {
         return false;
     }
     
+    @Author("Florian")
+    public Iterator<V> iterator() {
+        return new Iter();
+    }
+    
     public static void main(String[] args) {
         Map<String, Integer> mp = new Map<String, Integer>();
         mp.insert("Hallo", 1);
@@ -66,6 +89,8 @@ public class Map<K, V> {
         System.out.println(mp.find("Hallo"));
         System.out.println(mp.find("Welt"));
         mp.insert("Welt", 3);
+        System.out.println(mp.find("Welt"));
+        mp.remove("Welt");
         System.out.println(mp.find("Welt"));
     }
 }
