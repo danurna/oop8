@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
  *
  * 
@@ -6,11 +8,11 @@
 public class Farm {
     //IV: name darf nicht veraendert werden.
     private final String name;
-    private Object tractors;
+    private Map<Integer, Tractor> tractors;
 
     public Farm(String name){
         this.name = name;
-        this.tractors = new Object();
+        this.tractors = new Map<Integer, Tractor>();
     }
 
     @Author("Daniel")
@@ -23,9 +25,8 @@ public class Farm {
     //False, wenn schon ein Traktor t mit der id von t existiert.
     @Author("Daniel")
     public boolean addTractor(Tractor t){
-        if( true ) {
-        //if( tractors.find( t.getTractorId() ) == null ){
-        //    tractors.add(t.getTractorId(), t);
+        if( tractors.find( t.getTractorId() ) == null ){
+            tractors.insert(t.getTractorId(), t);
             return true;
         }else{
             return false;
@@ -38,8 +39,7 @@ public class Farm {
     //False, wenn Traktor schon vor dem Aufruf nicht vorhanden war.
     @Author("Daniel")
     public boolean removeTractor(int tid){
-        //return tractors.remove(tid);
-        return true;
+        return tractors.remove(tid);
     }
 
     //VB: id != null
@@ -47,22 +47,30 @@ public class Farm {
     //nicht vorhanden wir null zurueckgegeben.
     @Author("Daniel")
     public Tractor getTractor(int tid){
-        //return (Tractor)tractors.find(tid);
-        return null;
+        return (Tractor)tractors.find(tid);
     }
 
     @Author("Daniel")
-    private double avgHours (Class tractorType, Class usageTypeType){
-        Tractor tractor = null;
+    public double avgHours (Class tractorType, Class usageTypeType){
+        Tractor tractor;
         int hours = 0;
         int numberOfTractors = 0;
-        /*
-        if( (tractor instanceof tractorType) &&
-                (tractor.getUsageType() instanceof usageTypeType)){
-            numberOfTractors += 1;
-            hours += tractor.getHours();
+
+        Iterator iter = tractors.iterator();
+
+        while(iter.hasNext()){
+            Object next = iter.next();
+            if( tractorType.isInstance(next) ){
+                tractor = (Tractor) next;
+                if( usageTypeType.isInstance(tractor.getUsageType()) ){
+                    numberOfTractors += 1;
+                    hours += tractor.getHours();
+                }
+            }
         }
-        */
+        
+        
+        
 
         if( numberOfTractors == 0 ){
             return 0;
@@ -71,11 +79,61 @@ public class Farm {
         }
     }
 
-    //FIXME
-    /*
-    public double avgHoursTest(Tractor.class, Saehen.class){
-        return 0;
+    @Author("Daniel")
+    public double avgDiesel (Class usageTypeType){
+        Class tractorType = FuelTractor.class;
+        FuelTractor tractor = null;
+        int consumedFuel = 0;
+        int numberOfTractors = 0;
+
+        Iterator iter = tractors.iterator();
+
+        while(iter.hasNext()){
+            Object next = iter.next();
+            if( tractorType.isInstance(next) ){
+                tractor = (FuelTractor) next;
+                if( usageTypeType.isInstance(tractor.getUsageType()) ){
+                    numberOfTractors += 1;
+                    consumedFuel += tractor.getConsumedFuel();
+                }
+            }
+        }
+
+        if( numberOfTractors == 0 ){
+            return 0;
+        }else{
+            return consumedFuel / (double) numberOfTractors;
+        }
     }
-    * */
+
+
+    @Author("Daniel")
+    public double avgBiogas (Class usageTypeType){
+        Class tractorType = BiogasTractor.class;
+        BiogasTractor tractor = null;
+        double consumedBiogas = 0;
+        int numberOfTractors = 0;
+
+        Iterator iter = tractors.iterator();
+
+        while(iter.hasNext()){
+            Object next = iter.next();
+            if( tractorType.isInstance(next) ){
+                tractor = (BiogasTractor) next;
+                if( usageTypeType.isInstance(tractor.getUsageType()) ){
+                    numberOfTractors += 1;
+                    consumedBiogas += tractor.getConsumedBiogas();
+                }
+            }
+        }
+
+        if( numberOfTractors == 0 ){
+            return 0;
+        }else{
+            return consumedBiogas / (double) numberOfTractors;
+        }
+    }
+
+
 
 }

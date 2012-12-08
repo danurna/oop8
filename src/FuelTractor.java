@@ -12,13 +12,13 @@ public class FuelTractor extends Tractor {
 
     //VB: v >= 0
     @Author("Daniel")
-    public void incrConsumedBiogas(int v){
+    public void incrConsumedFuel(int v){
         consumedFuel += v;
     }
 
     //NB: Zurueckgabe wert >= 0
     @Author("Daniel")
-    public int getConsumedBiogas(){
+    public int getConsumedFuel(){
         return consumedFuel;
     }
 }
