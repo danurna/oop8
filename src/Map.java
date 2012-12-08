@@ -1,4 +1,4 @@
-
+// Eine Map speichert Values, die mit Keys assoziiert werden. 
 @Author("Florian")
 public class Map<K, V> {
     Node head = null;
@@ -8,6 +8,8 @@ public class Map<K, V> {
         private Node next;
     }
     
+    // NB: Gib value zurueck, der mit k assoziiert ist.
+    // Gib null zurueck, wenn kein value mit k assoziiert.
     @Author("Florian")
     public V find(K k) {
         for (Node c = head; c != null; c = c.next) {
