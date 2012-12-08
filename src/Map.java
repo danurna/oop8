@@ -12,15 +12,19 @@ public class Map<K, V> implements Iterable<V> {
     
     private class Iter implements Iterator<V> {
         private Node next = head;
+        @Override
         public boolean hasNext() {
             return next != null;
         }
+        
+        @Override
         public V next() {
             V v = next.value;
             next = next.next;
             return v;
         }
         
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
