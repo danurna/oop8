@@ -20,7 +20,7 @@ public class Map<K, V> {
         return null;
     }
     
-    // NV: Mapping k->v eingefuegt. Wenn Rueckgabewert true wurde
+    // NB: Mapping k->v eingefuegt. Wenn Rueckgabewert true wurde
     // es neu eingefuegt, sonst ein altes mit der neuen value
     // ersetzt.
     @Author("Florian")
@@ -38,5 +38,34 @@ public class Map<K, V> {
         a.next = head;
         head = a;
         return true;
+    }
+    
+    // NB: Mapping k->v entfernt. Gibt true zurueck, wenn es existierte.
+    // sonst false.
+    @Author("Florian")
+    public boolean remove(K k) {
+        Node l = null;
+        for (Node c = head; c != null; c = c.next) {
+            if (c.key.equals(k)) {
+                if (l == null) {
+                    head = c.next;
+                } else {
+                    l.next = c.next;
+                }
+                return true;
+            }
+            l = c;
+        }
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        Map<String, Integer> mp = new Map<String, Integer>();
+        mp.insert("Hallo", 1);
+        mp.insert("Welt", 2);
+        System.out.println(mp.find("Hallo"));
+        System.out.println(mp.find("Welt"));
+        mp.insert("Welt", 3);
+        System.out.println(mp.find("Welt"));
     }
 }
