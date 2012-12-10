@@ -72,5 +72,5 @@ public abstract class Tractor {
         return hash;
     }
 
-
+    public abstract String toString();
 }

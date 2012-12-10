@@ -21,5 +21,12 @@ public class BiogasTractor extends Tractor {
     public double getConsumedBiogas(){
         return consumedBiogas;
     }
-
+    
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "BiogasTractor [ID="+this.getTractorId()+ " ,consumedBiogas=" + consumedBiogas + ", hours=" +this.getHours()+ "]";
+	}
 }

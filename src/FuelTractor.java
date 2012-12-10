@@ -21,4 +21,12 @@ public class FuelTractor extends Tractor {
     public int getConsumedFuel(){
         return consumedFuel;
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FuelTractor [ID="+this.getTractorId()+ " , consumedFuel=" + consumedFuel + ", hours=" +this.getHours()+ "]";
+	}
 }

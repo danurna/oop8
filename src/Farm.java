@@ -70,9 +70,6 @@ public class Farm {
             }
         }
         
-        
-        
-
         if( numberOfTractors == 0 ){
             return 0;
         }else{
@@ -136,7 +133,93 @@ public class Farm {
             return consumedBiogas / (double) numberOfTractors;
         }
     }
+    
+    // liefert die durchschnittliche kapazitaet des duengerBehaelters
+    // VB tractor Type != null
+    @Author("Bernhard")
+    public double avgCapacity (Class tractorType) {
+    	Tractor tractor;
+    	Class usageType = Fertilize.class;
+        double cap = 0;
+        int numberOfTractors = 0;
 
+        Iterator iter = tractors.iterator();
 
+        while(iter.hasNext()){
+            Object next = iter.next();
+            if( tractorType.isInstance(next) ){
+                tractor = (Tractor) next;
+                if( usageType.isInstance(tractor.getUsageType()) ){
+                    Fertilize f = (Fertilize) tractor.getUsageType();
+                	numberOfTractors += 1;
+                    cap += f.getValue();
+                }
+            }
+        }
 
+        if( numberOfTractors == 0 ){
+            return 0;
+        }else{
+            return cap / (double) numberOfTractors;
+        }
+    }
+
+    // liefert die minimale anzahl an saescharen des tractorType
+    // VB tractor Type != null
+    @Author("Bernhard")
+    public int getMinSc (Class tractorType) {
+    	Tractor tractor;
+    	Class usageType = Sow.class;
+        int min = Integer.MAX_VALUE;
+
+        Iterator iter = tractors.iterator();
+
+        while(iter.hasNext()){
+            Object next = iter.next();
+            if( tractorType.isInstance(next) ){
+                tractor = (Tractor) next;
+                if( usageType.isInstance(tractor.getUsageType()) ){
+                	Sow f = (Sow) tractor.getUsageType();
+                	if (min > f.getValue()) {
+                		min = f.getValue();
+                	}
+                }
+            }
+        }
+        return (min==Integer.MAX_VALUE) ? 0 : min;
+    }
+    
+    //liefert die maximale anzahl an saescharen des tractorType
+    // VB tractor Type != null
+    @Author("Bernhard")
+    public int getMaxSc (Class tractorType) {
+    	Tractor tractor;
+    	Class usageType = Sow.class;
+        int max = Integer.MIN_VALUE;
+
+        Iterator iter = tractors.iterator();
+
+        while(iter.hasNext()){
+            Object next = iter.next();
+            if( tractorType.isInstance(next) ){
+                tractor = (Tractor) next;
+                if( usageType.isInstance(tractor.getUsageType()) ){
+                	Sow f = (Sow) tractor.getUsageType();
+                	if (max < f.getValue()) {
+                		max = f.getValue();
+                	}
+                }
+            }
+        }
+        return (max==Integer.MIN_VALUE) ? 0 : max;
+    }
+    
+    
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Farm [name=" + name + "]";
+	}
 }

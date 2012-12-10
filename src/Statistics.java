@@ -69,6 +69,51 @@ public class Statistics {
     public double avgBiogasUsageFertilize(){
         return farm.avgBiogas(Fertilize.class);
     }
+    
+    @Author("Bernhard")
+    public double avgCapaticity(){
+        return farm.avgCapacity(Tractor.class);
+    }
 
+    @Author("Bernhard")
+    public double avgCapaticityDiesel(){
+        return farm.avgCapacity(FuelTractor.class);
+    }
+    
+    @Author("Bernhard")
+    public double avgCapaticityBiogas(){
+        return farm.avgCapacity(BiogasTractor.class);
+    }
+    
+    @Author("Bernhard")
+    public double getMinSaescharen(){
+        return farm.getMinSc(Tractor.class);
+    }
+    
+    @Author("Bernhard")
+    public double getMinSaescharenDiesel(){
+        return farm.getMinSc(FuelTractor.class);
+    }
+    @Author("Bernhard")
+    public double getMinSaescharenBiogas(){
+        return farm.getMinSc(BiogasTractor.class);
+    }
+    
+    @Author("Bernhard")
+    public double getMaxSaescharen(){
+        return farm.getMaxSc(Tractor.class);
+    }
+    
+    @Author("Bernhard")
+    public double getMaxSaescharenDiesel(){
+        return farm.getMaxSc(FuelTractor.class);
+    }
+    
+    @Author("Bernhard")
+    public double getMaxSaescharenBiogas(){
+        return farm.getMaxSc(BiogasTractor.class);
+    }
+        
+    
 
 }
