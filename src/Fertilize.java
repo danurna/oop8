@@ -4,21 +4,22 @@
  */
 @Author("Daniel")
 public class Fertilize extends UsageType{
-
+	private Double liter;
+		
     public Fertilize(){
         super();
     }
 
     //VB: value != null, value >= 0
     public Fertilize(Double value){
-        super(value);
+        this.liter = value;
     }
 
     @Override
     @Author("Daniel")
     public void setValue(Object value) throws IllegalArgumentException{
         if( value instanceof Double ){
-            this.value = (Double)value;
+            liter = (Double)value;
         }else{
             throw new IllegalArgumentException("Ungueltiges Argument");
         }
@@ -27,7 +28,7 @@ public class Fertilize extends UsageType{
     @Override
     @Author("Daniel")
     public Double getValue(){
-        return (Double)value;
+        return liter;
     }
 
 }

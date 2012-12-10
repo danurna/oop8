@@ -6,20 +6,22 @@
 @Author("Daniel")
 public class Sow extends UsageType{
 
+	private int num;
+	
     public Sow(){
         super();
     }
 
     //VB: value != null, value >= 0
     public Sow(Integer value){
-        super(value);
+    	num = value;
     }
 
     @Override
     @Author("Daniel")
     public void setValue(Object value) throws IllegalArgumentException{
         if( value instanceof Integer ){
-            this.value = (Integer)value;
+            num = (Integer)value;
         }else{
             throw new IllegalArgumentException("Ungueltiges Argument");
         }
@@ -28,7 +30,7 @@ public class Sow extends UsageType{
     @Override
     @Author("Daniel")
     public Integer getValue(){
-        return (Integer)value;
+        return num;
     }
 
 
