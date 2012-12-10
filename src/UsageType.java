@@ -1,14 +1,19 @@
 /**
- *
+ * Jeder Traktor kann fuer verschiedene Zwecke verwendet.
+ * Dies ist eine abstrakte Superklasse fuer einen solchen 
+ * Verwendungszweck.
  * 
  */
 @Author("Daniel")
 public abstract class UsageType {
-    protected Object value;
+    
+	// jeder Vewrwendungszweck hat eine charaktarisierende eigenschaft die gesetzt
+	// gespeichert und geaendert werden darf.
+	protected Object value;
 
-    public UsageType(){
-        
-    }
+    // Default konstruktor
+    public UsageType() { }
+    
     //VB: value != null
     public UsageType(Object value){
         this.value = value;

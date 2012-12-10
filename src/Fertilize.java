@@ -1,6 +1,6 @@
 /**
- *
- * 
+ * Der Verwendungszweck zum Duengen speichert als Eigenschaft die 
+ * Kapazitaet des Behaelters in Liter  
  */
 @Author("Daniel")
 public class Fertilize extends UsageType{

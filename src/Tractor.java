@@ -4,7 +4,7 @@
  */
 @Author("Daniel")
 public abstract class Tractor {
-    //IV: Nummer nicht veraenderbar
+    //IV: tid nicht veraenderbar
     private final int tid;
     private static int tractors = 0;
     private int hours = 0;
@@ -16,6 +16,7 @@ public abstract class Tractor {
         this.usageType = t;
     }
 
+    //VB u ist Untertyp von UsageType und != null
     @Author("Daniel")
     public void setUsageType(UsageType u){
         usageType = u;
@@ -69,7 +70,6 @@ public abstract class Tractor {
         int hash = 3;
         hash = (71 * hash) + tid;
         return hash;
-
     }
 
 

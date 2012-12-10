@@ -50,6 +50,7 @@ public class Farm {
         return (Tractor)tractors.find(tid);
     }
 
+    //VB tractor type != null, usageTypeType != null
     @Author("Daniel")
     public double avgHours (Class tractorType, Class usageTypeType){
         Tractor tractor;
@@ -79,6 +80,7 @@ public class Farm {
         }
     }
 
+  //VB  usageTypeType != null
     @Author("Daniel")
     public double avgDiesel (Class usageTypeType){
         Class tractorType = FuelTractor.class;
@@ -107,6 +109,7 @@ public class Farm {
     }
 
 
+  //VB  usageTypeType != null
     @Author("Daniel")
     public double avgBiogas (Class usageTypeType){
         Class tractorType = BiogasTractor.class;

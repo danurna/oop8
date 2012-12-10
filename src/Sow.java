@@ -1,5 +1,6 @@
 /**
- *
+ * Der Verwendungszweck zum Saehen speichert als 
+ * Eigenschaftt die Anzahl der Saeschare (ganze Zahl)   
  * 
  */
 @Author("Daniel")
