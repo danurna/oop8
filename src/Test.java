@@ -9,7 +9,7 @@ public class Test {
      * Hier werden die Punkte aus der Angabe getestet und vorgestellt wie man mit
      * den Klassen umgeht:
      */
-    private static Map<String,Farm> farms = new Map<String,Farm>();
+    private static Map farms = new Map();
 	
 	
 	
@@ -24,12 +24,12 @@ public class Test {
 	private static void testFarms() {
 		Farm f;
     	// menge von Bauernhofen erstellen
-		farms.insert("Farm1", new Farm("Farm1"));
-		farms.insert("Farm2", new Farm("Farm2"));
-		farms.insert("Farm3", new Farm("Farm3"));
+		farms.insert((String) "Farm1", (Farm) new Farm("Farm1"));
+		farms.insert((String) "Farm2", (Farm) new Farm("Farm2"));
+		farms.insert((String) "Farm3", (Farm) new Farm("Farm3"));
 		
 		// Bauernhofen ansprechen nach namen
-		f = farms.find("Farm1");
+		f = (Farm) farms.find("Farm1");
 		System.out.println("Zeige Farm1:");
 		System.out.println(f);
 		
@@ -39,9 +39,9 @@ public class Test {
 		f.addTractor(new BiogasTractor(new Fertilize(11.2)));
 		f.addTractor(new FuelTractor(new Sow(3)));
 		f.addTractor(new FuelTractor(new Fertilize(17.8)));
-		farms.find("Farm2").addTractor(new FuelTractor(new Sow(1)));
-		farms.find("Farm3").addTractor(new BiogasTractor(new Sow(1)));
-		farms.find("Farm3").addTractor(new FuelTractor(new Sow(5)));
+		((Farm) farms.find((String) "Farm2")).addTractor(new FuelTractor(new Sow(1)));
+		((Farm) farms.find((String) "Farm3")).addTractor(new BiogasTractor(new Sow(1)));
+		((Farm) farms.find((String) "Farm3")).addTractor(new FuelTractor(new Sow(5)));
 		
 		// spreche Traktor ueber eigene nummer an (1. Traktor hat nummer 1
 		// die folgenden jeweils eins hoeher)
@@ -63,28 +63,28 @@ public class Test {
     	
     	// entfernen sie einzelne Traktoren:
     	// entferne Traktor 5 von Farm1
-    	farms.find("Farm1").removeTractor(5);
+    	((Farm) farms.find((String) "Farm1")).removeTractor(5);
     	// entferne Traktor 8 von Farm3
-    	farms.find("Farm3").removeTractor(8);
+    	((Farm)farms.find((String) "Farm3")).removeTractor(8);
     	
     	// aender Sie die Informationen zu einzelnen Traktoren
     	// traktor 1 arbeitet 10 stunden
-    	farms.find("Farm1").getTractor(1).incrHours(10);
+    	((Farm)farms.find((String) "Farm1")).getTractor(1).incrHours(10);
     	// traktor 1 wird ab jetzt zum Saehen eingesetzt und 
     	// arbeit dabei wieder 10 stunden
-    	farms.find("Farm1").getTractor(1).setUsageType(new Sow(4));
-    	farms.find("Farm1").getTractor(1).incrHours(10);
+    	((Farm)farms.find((String) "Farm1")).getTractor(1).setUsageType(new Sow(4));
+    	((Farm)farms.find((String) "Farm1")).getTractor(1).incrHours(10);
     	//traktor 2,3,4,6,7 arbeiten jeweils einige stunden
-    	farms.find("Farm1").getTractor(2).incrHours(12);
-    	farms.find("Farm1").getTractor(3).incrHours(1);
-    	farms.find("Farm1").getTractor(4).incrHours(78);
-    	farms.find("Farm2").getTractor(6).incrHours(56);
-    	farms.find("Farm3").getTractor(7).incrHours(14);
+    	((Farm)farms.find((String) "Farm1")).getTractor(2).incrHours(12);
+    	((Farm)farms.find((String) "Farm1")).getTractor(3).incrHours(1);
+    	((Farm)farms.find((String) "Farm1")).getTractor(4).incrHours(78);
+    	((Farm)farms.find((String) "Farm2")).getTractor(6).incrHours(56);
+    	((Farm) farms.find((String) "Farm3")).getTractor(7).incrHours(14);
     	
     	// erhoehe Treibstoff/Gas verbrauch
-    	FuelTractor ft = (FuelTractor) farms.find("Farm1").getTractor(4);
+    	FuelTractor ft = (FuelTractor) ((Farm) farms.find((String) "Farm1")).getTractor(4);
     	ft.incrConsumedFuel(10000);
-    	BiogasTractor bt = (BiogasTractor) farms.find("Farm1").getTractor(2);
+    	BiogasTractor bt = (BiogasTractor) ((Farm) farms.find((String) "Farm1")).getTractor(2);
     	bt.incrConsumedBiogas(200.3);
     }
     
@@ -139,8 +139,8 @@ public class Test {
 	 * ermittelt werden.
 	 */
     @Author("Florian")
-    public static void printAuthors(Class<?> cls) {
-        Author clsAuthor = cls.getAnnotation(Author.class);
+    public static void printAuthors(Class cls) {
+        Author clsAuthor = (Author) cls.getAnnotation(Author.class);
         if (clsAuthor != null) {
             System.out.println(cls.getName() + ": " + clsAuthor.value());
         } else {

@@ -8,11 +8,11 @@ import java.util.Iterator;
 public class Farm {
     //IV: name darf nicht veraendert werden.
     private final String name;
-    private Map<Integer, Tractor> tractors;
+    private Map tractors;
 
     public Farm(String name){
         this.name = name;
-        this.tractors = new Map<Integer, Tractor>();
+        this.tractors = new Map();
     }
 
     @Author("Daniel")
@@ -25,8 +25,8 @@ public class Farm {
     //False, wenn schon ein Traktor t mit der id von t existiert.
     @Author("Daniel")
     public boolean addTractor(Tractor t){
-        if( tractors.find( t.getTractorId() ) == null ){
-            tractors.insert(t.getTractorId(), t);
+        if( tractors.find((Integer) t.getTractorId() ) == null ){
+            tractors.insert((Integer) t.getTractorId(), (Tractor) t);
             return true;
         }else{
             return false;
@@ -39,7 +39,7 @@ public class Farm {
     //False, wenn Traktor schon vor dem Aufruf nicht vorhanden war.
     @Author("Daniel")
     public boolean removeTractor(int tid){
-        return tractors.remove(tid);
+        return tractors.remove((Integer) tid);
     }
 
     //VB: id != null
@@ -47,7 +47,7 @@ public class Farm {
     //nicht vorhanden wir null zurueckgegeben.
     @Author("Daniel")
     public Tractor getTractor(int tid){
-        return (Tractor)tractors.find(tid);
+        return (Tractor)tractors.find((Integer) tid);
     }
 
     //VB tractor type != null, usageTypeType != null

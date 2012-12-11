@@ -2,15 +2,15 @@ import java.util.Iterator;
 
 // Eine Map speichert Values, die mit Keys assoziiert werden. 
 @Author("Florian")
-public class Map<K, V> implements Iterable<V> {
+public class Map implements Iterable {
     private Node head = null;
     private class Node {
-        private K key;
-        private V value;
+        private Object key;
+        private Object value;
         private Node next;
     }
     
-    private class Iter implements Iterator<V> {
+    private class Iter implements Iterator {
         private Node next = head;
         @Override
         public boolean hasNext() {
@@ -18,8 +18,8 @@ public class Map<K, V> implements Iterable<V> {
         }
         
         @Override
-        public V next() {
-            V v = next.value;
+        public Object next() {
+            Object v = next.value;
             next = next.next;
             return v;
         }
@@ -33,7 +33,7 @@ public class Map<K, V> implements Iterable<V> {
     // NB: Gib value zurueck, der mit k assoziiert ist.
     // Gib null zurueck, wenn kein value mit k assoziiert.
     @Author("Florian")
-    public V find(K k) {
+    public Object find(Object k) {
         for (Node c = head; c != null; c = c.next) {
             if (c.key.equals(k)) {
                 return c.value;
@@ -46,7 +46,7 @@ public class Map<K, V> implements Iterable<V> {
     // es neu eingefuegt, sonst ein altes mit der neuen value
     // ersetzt.
     @Author("Florian")
-    public boolean insert(K k, V v) {
+    public boolean insert(Object k, Object v) {
         for (Node c = head; c != null; c = c.next) {
             if (c.key.equals(k)) {
                 c.value = v;
@@ -65,7 +65,7 @@ public class Map<K, V> implements Iterable<V> {
     // NB: Mapping k->v entfernt. Gibt true zurueck, wenn es existierte.
     // sonst false.
     @Author("Florian")
-    public boolean remove(K k) {
+    public boolean remove(Object k) {
         Node l = null;
         for (Node c = head; c != null; c = c.next) {
             if (c.key.equals(k)) {
@@ -83,12 +83,12 @@ public class Map<K, V> implements Iterable<V> {
     
     @Override
     @Author("Florian")
-    public Iterator<V> iterator() {
+    public Iterator iterator() {
         return new Iter();
     }
     
     public static void main(String[] args) {
-        Map<String, Integer> mp = new Map<String, Integer>();
+        Map mp = new Map();
         mp.insert("Hallo", 1);
         mp.insert("Welt", 2);
         System.out.println(mp.find("Hallo"));
