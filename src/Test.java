@@ -93,10 +93,10 @@ public class Test {
      */
 	private static void printStatistic() {
 		Farm f; 
-		Iterator<Farm> i = farms.iterator();
+		Iterator i = farms.iterator();
 		Statistics st;
 		while (i.hasNext()) {
-			f = i.next();
+			f = (Farm) i.next();
 			st = new Statistics(f);
 			
 			System.out.println("PRINT STATISTICS FOR : "+f);
